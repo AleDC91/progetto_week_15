@@ -1,0 +1,23 @@
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/regular.css';
+@import '@fortawesome/fontawesome-free/css/solid.css';
+@import '@fortawesome/fontawesome-free/css/brands.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.msg-box {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 32px;
+    top: 90px
+}
+
+@media screen and (max-width: 576px) {
+    .msg-box {
+        width: 98%;
+    }
+}

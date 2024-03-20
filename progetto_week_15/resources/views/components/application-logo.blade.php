@@ -1,0 +1,1 @@
+<img src="{{ asset('images/logo.avif')}}" alt="logo" style="width:40px"> 
