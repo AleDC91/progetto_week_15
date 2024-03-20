@@ -13,10 +13,10 @@
 
 - Autenticazione e gestione utenti con laravel breeze
 
-** Admin: **
+**Admin:**
 - email: admin@example.com 
 - password: Admin@1234!
 
-** Utente base: * 
+**Utente base:**
 - email: m.rossi@example.com
 - password: Pa$$w0rd!
