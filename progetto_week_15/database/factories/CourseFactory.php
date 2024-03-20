@@ -25,7 +25,7 @@ class CourseFactory extends Factory
         $endDate = Carbon::parse(fake()->dateTimeBetween($minEndDate, $maxEndDate)->format('Y-m-d'));
         // dd($startDate, $minEndDate, $maxEndDate,$endDate);
                 
-        $totalSeats = fake()->numberBetween(10, 50);
+        $totalSeats = fake()->numberBetween(10, 20);
         $bookedSeats = fake()->numberBetween(0, $totalSeats);
 
         return [

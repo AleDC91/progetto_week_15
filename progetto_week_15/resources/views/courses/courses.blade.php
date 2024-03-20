@@ -6,5 +6,6 @@
     </x-slot>
     <div>
         <x-all-courses-table :courses="$courses"/>
+        <x-all-past-courses :courses="$courses"/>
     </div>
 </x-app-layout>
