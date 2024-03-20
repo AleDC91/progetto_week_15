@@ -85,7 +85,7 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 text-base">
-                            <a href="#">
+                            <a href="{{route('instructors.show', ['instructor' => $course->instructor ])}}">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 w-10 h-10 ">
                                         <img class="w-full h-full rounded-full overflow-hidden"
