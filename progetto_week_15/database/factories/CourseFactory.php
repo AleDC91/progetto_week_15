@@ -26,7 +26,7 @@ class CourseFactory extends Factory
         // dd($startDate, $minEndDate, $maxEndDate,$endDate);
                 
         $totalSeats = fake()->numberBetween(10, 20);
-        $bookedSeats = fake()->numberBetween(0, $totalSeats);
+        // $bookedSeats = fake()->numberBetween(0, $totalSeats);
 
         return [
             "name" => rtrim(fake()->text(15), '.'),
@@ -35,9 +35,9 @@ class CourseFactory extends Factory
             'start_date' => $startDate,
             'end_date' => $endDate,
             'difficulty' => fake()->randomElement(['beginner', 'intermediate', 'Advanced']),
-            'monthly_cost' => fake()->numberBetween(10, 40) * 1000,
+            'monthly_cost' => fake()->numberBetween(3, 20) * 1000,
             'total_seats' => $totalSeats,
-            'booked_seats' => $bookedSeats,
+            // 'booked_seats' => $bookedSeats,
 
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use App\Models\Instructor;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -17,7 +18,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::all();
-        return view('courses.courses', ['courses' => $courses ]);
+        return view('courses.courses', ['courses' => $courses]);
     }
 
     /**
@@ -25,7 +26,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $instructors = Instructor::all();
+        return view('admin.create', ['instructors' => $instructors]);
     }
 
     /**
@@ -33,9 +35,42 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
-    }
+        // dd($request);
+        try {
 
+            $validatedData = $request->validate([
+
+                'course_name' => 'required|string|max:255',
+                'course_description' => 'string',
+                'course_start_date' => "required|date",
+                'course_end_date' => 'required|date|after:project_start_date',
+                'course_instructor' => 'required|integer',
+                'course_cost' => 'integer',
+                'course_difficulty' => 'required|string|in:beginner,intermediate,Advanced',
+                'course_capacity' => 'required|integer',
+            ]);
+
+            $course = new Course();
+            $course->name = $validatedData['course_name'];
+            $course->description = $validatedData['course_description'];
+            $course->start_date = $validatedData['course_start_date'];
+            $course->end_date = $validatedData['course_end_date'];
+            $course->instructor_id = $validatedData['course_instructor'];
+            $course->monthly_cost= $validatedData['course_cost'] * 100;
+            $course->difficulty = $validatedData['course_difficulty'];
+            $course->total_seats = $validatedData['course_capacity'];
+
+            $course->save();
+
+
+            return redirect(route('courses.index', [ 'courses' => Course::all()]))->with('success', 'New course added successfully.');
+        } catch (\Exception $e) {
+           
+                return redirect()->back()->with('error', "Error while creating Course: " . $e->getMessage());
+                // dd($e);
+            
+        }
+    }
     /**
      * Display the specified resource.
      */
@@ -65,7 +100,6 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-       
     }
 
     public function unsubscribe(User $user, Course $course)

@@ -21,3 +21,34 @@
         width: 98%;
     }
 }
+
+.revoke-btn{
+    padding: 0.625rem 1.25rem; 
+    margin-bottom: 0.5rem; 
+    border-radius: 0.5rem; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    font-weight: 500; 
+    text-align: center; 
+    color: #ffffff; 
+    background: rgb(248,113,113);
+    background: linear-gradient(83deg, rgb(255, 145, 145) 34%, rgb(238, 113, 113) 59%,rgb(236, 83, 83) ); 
+
+}
+
+.reconsider-btn {
+    padding: 0.625rem 1.25rem; 
+    margin-bottom: 0.5rem; 
+    border-radius: 0.5rem; 
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    font-weight: 500; 
+    text-align: center; 
+    color: #ffffff; 
+    background: #3a5be2;
+    background: linear-gradient(#506ee6 34%, #3a5be2 59% ,#284ddf) 
+}
+
+
+
+

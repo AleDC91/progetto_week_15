@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('difficulty', ['beginner', 'intermediate', 'Advanced']);
             $table->integer('monthly_cost')->nullable();
             $table->integer('total_seats');
-            $table->integer('booked_seats');
+            // $table->integer('booked_seats');
             $table->timestamps();
 
             $table->foreign('instructor_id')

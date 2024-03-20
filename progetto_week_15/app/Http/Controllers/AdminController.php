@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Instructor;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -31,11 +33,13 @@ class AdminController extends Controller
             $users = $course->users()->get(['users.*', 'course_bookings.status']);
 
             if ($confirmedUserCount >= $maxCapacity) {
-                return response()->json(['success' => false, 
-                'message' => 'Course has reached maximum capacity for confirmed users',
-                'users' => $users,
-                'confirmed_user_count' => $confirmedUserCount,
-                'max_capacity' => $maxCapacity]);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Course has reached maximum capacity for confirmed users',
+                    'users' => $users,
+                    'confirmed_user_count' => $confirmedUserCount,
+                    'max_capacity' => $maxCapacity
+                ]);
             }
 
             $user->courses()->updateExistingPivot($course->id, [
@@ -74,11 +78,13 @@ class AdminController extends Controller
             $users = $course->users()->get(['users.*', 'course_bookings.status']);
 
             if ($confirmedUserCount >= $maxCapacity) {
-                return response()->json(['success' => false, 
-                'message' => 'Course has reached maximum capacity for confirmed users',
-                'users' => $users,
-                'confirmed_user_count' => $confirmedUserCount,
-                'max_capacity' => $maxCapacity]);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Course has reached maximum capacity for confirmed users',
+                    'users' => $users,
+                    'confirmed_user_count' => $confirmedUserCount,
+                    'max_capacity' => $maxCapacity
+                ]);
             }
 
             $user->courses()->updateExistingPivot($course->id, [
@@ -176,4 +182,66 @@ class AdminController extends Controller
             return response()->json(['success' => false, 'message' => "An error occurred while reconsidering user"]);
         }
     }
+
+
+
+
+
+    public function statistics()
+    {
+
+
+        $confirmedUsers = User::whereHas('courses', function ($query) {
+            $query->where('course_bookings.status', 'confirmed');
+        })->count();
+
+        $pendingUsers = User::whereHas('courses', function ($query) {
+            $query->where('course_bookings.status', 'pending');
+        })->count();
+
+
+
+        $cancelledUsers = User::whereHas('courses', function ($query) {
+            $query->where('course_bookings.status', 'cancelled');
+        })->count();
+
+        $users = User::all();
+        $courses = Course::all();
+        $instructors = Instructor::all();
+
+
+        $courseStatistics = [];
+        foreach ($courses as $course) {
+            if ($course->end_date >= Carbon::now()) {
+
+                $totalSeats = $course->total_seats;
+
+                $confirmedUsersCount = $course->users()->wherePivot('status', 'confirmed')->count();
+
+                $totalRequestsCount = $course->users()->count();
+
+                $courseStatistics[] = [
+                    'course_name' => $course->name,
+                    'total_seats' => $totalSeats,
+                    'confirmed_users_count' => $confirmedUsersCount,
+                    'total_requests_count' => $totalRequestsCount
+                ];
+            }
+        }
+
+
+
+        return view('admin.stats', [
+            'users' => $users,
+            'courses' => $courses,
+            'confirmedUsers' => $confirmedUsers,
+            'pendingUsers' => $pendingUsers,
+            'cancelledUsers' => $cancelledUsers,
+            'courseStatistics' => $courseStatistics,
+            'instructors' => $instructors,
+        ]);
+    }
+
+
+
 }

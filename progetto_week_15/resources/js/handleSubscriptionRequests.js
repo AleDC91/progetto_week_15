@@ -294,8 +294,7 @@ function updateTable(courseId, users, count, max) {
 
                 const rejectButton = document.createElement("button");
                 rejectButton.type = "button";
-                rejectButton.className =
-                    "text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2";
+                rejectButton.className = "text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2";
                 rejectButton.textContent = "Reject";
                 rejectButton.addEventListener("click", function () {
                     handleReject(user.id, courseId);
@@ -305,7 +304,7 @@ function updateTable(courseId, users, count, max) {
                 let revokeButton = document.createElement("button");
                 revokeButton.type = "button";
                 revokeButton.className =
-                    "text-white bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2";
+                    "revoke-btn";
                 revokeButton.textContent = "Revoke";
                 revokeButton.addEventListener("click", function () {
                     handleRevoke(user.id, courseId);
@@ -314,8 +313,7 @@ function updateTable(courseId, users, count, max) {
             } else if (user.status === "cancelled") {
                 let reconsiderButton = document.createElement("button");
                 reconsiderButton.type = "button";
-                reconsiderButton.className =
-                    "text-white bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2";
+                reconsiderButton.className = "reconsider-btn";
                 reconsiderButton.textContent = "Reconsider";
                 reconsiderButton.addEventListener("click", function () {
                     handleReconsider(user.id, courseId);
@@ -331,7 +329,7 @@ function updateTable(courseId, users, count, max) {
                 let revokeButton = document.createElement("button");
                 revokeButton.type = "button";
                 revokeButton.className =
-                    "text-white bg-gradient-to-r from-orange-300 via-orange-400 to-orange-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-200 dark:focus:ring-orange-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2";
+                "revoke-btn";
                 revokeButton.textContent = "Revoke";
                 revokeButton.addEventListener("click", function () {
                     handleRevoke(user.id, courseId);
