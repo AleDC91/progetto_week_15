@@ -22,6 +22,11 @@
                         {{ __('All Courses') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('instructors.index')" :active="request()->routeIs('instructors.index')">
+                        {{ __('Instructors') }}
+                    </x-nav-link>
+                </div>
 
                 @if (Auth::user()->isAdmin())
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

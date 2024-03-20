@@ -2,7 +2,7 @@
     use Carbon\Carbon as Carbon;
 @endphp
 
-<div class="all-courses-table m-10 p-8 bg-slate-200">
+<div class="all-courses-table m-8 p-8 bg-slate-200">
 
     <div class="flex flex-col md:flex-row items-center justify-between pb-6">
         <div>

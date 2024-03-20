@@ -13,7 +13,8 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        //
+        $instructors = Instructor::all();
+        return view('instructors.instructors', ['instructors' => $instructors ]);
     }
 
     /**
@@ -37,7 +38,7 @@ class InstructorController extends Controller
      */
     public function show(Instructor $instructor)
     {
-        //
+        return view('instructors.profile', ['instructor' => $instructor]);
     }
 
     /**
