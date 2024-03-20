@@ -71,9 +71,14 @@ class AdminController extends Controller
             // Controllo sul numero massimo di iscritti
             $maxCapacity = $course->total_seats;
             $confirmedUserCount = $course->users()->wherePivot('status', 'confirmed')->count();
+            $users = $course->users()->get(['users.*', 'course_bookings.status']);
 
             if ($confirmedUserCount >= $maxCapacity) {
-                return response()->json(['success' => false, 'message' => 'Course has reached maximum capacity for confirmed users']);
+                return response()->json(['success' => false, 
+                'message' => 'Course has reached maximum capacity for confirmed users',
+                'users' => $users,
+                'confirmed_user_count' => $confirmedUserCount,
+                'max_capacity' => $maxCapacity]);
             }
 
             $user->courses()->updateExistingPivot($course->id, [

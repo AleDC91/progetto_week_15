@@ -242,16 +242,16 @@ function updateTable(courseId, users, count, max) {
         const nameLink = document.createElement("a");
         nameLink.href = "#";
         nameLink.innerHTML = `<div class="flex items-center">
-<div class="flex-shrink-0 w-10 h-10 overflow-hidden">
-    <img class="w-full h-full rounded-full overflow-hidden"
-        src="${user.profile_image}" alt="${user.name}" />
-</div>
-<div class="ml-3">
-    <p class="text-gray-900 whitespace-no-wrap">
-    ${user.name}
-    </p>
-</div>
-</div>`;
+                                <div class="flex-shrink-0 w-10 h-10 overflow-hidden">
+                                    <img class="w-full h-full rounded-full overflow-hidden"
+                                        src="${user.profile_image}" alt="${user.name}" />
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                    ${user.name}
+                                    </p>
+                                </div>
+                              </div>`;
 
         nameCell.appendChild(nameLink);
         tr.appendChild(nameCell);
@@ -349,5 +349,5 @@ function updateTable(courseId, users, count, max) {
     tableContainer.innerHTML = "";
     tableContainer.appendChild(table);
 
-    tableContainer.parentElement.previousElementSibling.children[0].children[5].children[0].innerText = `${count}/${users.length}`;
+    tableContainer.parentElement.previousElementSibling.children[0].children[5].children[0].innerText = `${count}/${max}`;
 }
